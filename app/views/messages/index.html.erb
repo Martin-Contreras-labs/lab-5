@@ -7,6 +7,7 @@
       <th>Body</th>
       <th>Actions</th>
     </tr>
+    <%= link_to "Nuevo mensaje", new_message_path, class: "btn btn-primary" %>
   </thead>
   <tbody>
     <% @messages.each do |message| %>

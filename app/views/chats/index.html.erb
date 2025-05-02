@@ -6,6 +6,7 @@
       <th>Receiver ID</th>
       <th>Actions</th>
     </tr>
+    <%= link_to "Crear nuevo chat", new_chat_path, class: "btn btn-primary" %>
   </thead>
   <tbody>
     <% @chats.each do |chat| %>

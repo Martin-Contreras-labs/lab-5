@@ -1,0 +1,22 @@
+<h1>Nuevo Usuario</h1>
+
+<%= form_with model: @user, local: true do |f| %>
+  <div>
+    <%= f.label :first_name, "Nombre" %><br>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name, "Apellido" %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :email, "Correo Electrónico" %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.submit "Crear Usuario" %>
+  </div>
+<% end %>

@@ -7,6 +7,7 @@
       <th>Last Name</th>
       <th>Actions</th>
     </tr>
+    <%= link_to "Agregar nuevo usuario", new_user_path, class: "btn btn-primary" %>
   </thead>
   <tbody>
     <% @users.each do |user| %>

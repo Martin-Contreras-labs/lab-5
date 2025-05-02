@@ -1,0 +1,22 @@
+<h1>Nuevo Mensaje</h1>
+
+<%= form_with model: @message, local: true do |f| %>
+  <div>
+    <%= f.label :chat_id, "Chat" %><br>
+    <%= f.select :chat_id, @chats.map { |c| ["Chat ##{c.id}", c.id] }, prompt: "Seleccione un chat" %>
+  </div>
+
+  <div>
+    <%= f.label :user_id, "Autor" %><br>
+    <%= f.select :user_id, @users.map { |u| [u.email, u.id] }, prompt: "Seleccione un autor" %>
+  </div>
+
+  <div>
+    <%= f.label :body, "Mensaje" %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "Enviar Mensaje" %>
+  </div>
+<% end %>

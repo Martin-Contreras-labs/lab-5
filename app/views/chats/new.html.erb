@@ -1,0 +1,17 @@
+<h1>Nuevo Chat</h1>
+
+<%= form_with model: @chat, local: true do |f| %>
+  <div>
+    <%= f.label :sender_id, "Remitente" %><br>
+    <%= f.select :sender_id, @users.map { |u| [u.email, u.id] }, prompt: "Seleccione un remitente" %>
+  </div>
+
+  <div>
+    <%= f.label :receiver_id, "Receptor" %><br>
+    <%= f.select :receiver_id, @users.map { |u| [u.email, u.id] }, prompt: "Seleccione un receptor" %>
+  </div>
+
+  <div>
+    <%= f.submit "Crear Chat" %>
+  </div>
+<% end %>
