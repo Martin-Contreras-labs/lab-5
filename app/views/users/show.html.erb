@@ -1,4 +1,23 @@
 <h1>User Details</h1>
 <p><strong>Name:</strong> <%= @user.first_name %> <%= @user.last_name %></p>
 <p><strong>Email:</strong> <%= @user.email %></p>
+<%= link_to "Edit User", edit_user_path(@user), class: "btn btn-outline-secondary" %>
+
+<h2>Chats donde participa</h2>
+
+<ul>
+  <% (@sent_chats + @received_chats).uniq.each do |chat| %>
+    <li><%= link_to "Chat #{chat.id}", chat_path(chat) %></li>
+  <% end %>
+</ul>
+
+<h2>Mensajes enviados</h2>
+
+<ul>
+  <% @messages.each do |message| %>
+    <li><%= message.body %> (en Chat <%= link_to message.chat_id, chat_path(message.chat_id) %>)</li>
+  <% end %>
+</ul>
+
+
 <%= link_to 'Back to Users', users_path %>

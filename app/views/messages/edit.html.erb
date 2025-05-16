@@ -1,0 +1,31 @@
+<h1>Edit Message</h1>
+
+<% if @message.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>Errors:</h4>
+    <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @message do |form| %>
+  <div class="mb-3">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :user_id, "Author" %>
+    <%= form.select :user_id, @users.map { |u| [u.email, u.id] }, {}, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :chat_id %>
+    <%= form.select :chat_id, @chats.map { |c| ["Chat #{c.id} (#{c.sender_id}→#{c.receiver_id})", c.id] }, {}, class: "form-select" %>
+  </div>
+
+  <%= form.submit "Update Message", class: "btn btn-primary" %>
+<% end %>

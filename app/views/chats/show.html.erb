@@ -1,4 +1,20 @@
 <h1>Chat Details</h1>
+
 <p><strong>Sender ID:</strong> <%= @chat.sender_id %></p>
 <p><strong>Receiver ID:</strong> <%= @chat.receiver_id %></p>
-<%= link_to 'Back to Chats', chats_path %>
+
+<%= link_to 'Back to Chats', chats_path, class: "btn btn-secondary mt-3 me-2" %>
+<p><strong>Sender:</strong> <%= User.find(@chat.sender_id).email rescue @chat.sender_id %></p>
+<p><strong>Receiver:</strong> <%= User.find(@chat.receiver_id).email rescue @chat.receiver_id %></p>
+
+<h3>Mensajes en este chat:</h3>
+<ul>
+  <% @chat.messages.each do |message| %>
+    <li>
+      <strong><%= message.user.email rescue "User ##{message.user_id}" %>:</strong>
+      <%= message.body %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit Chat", edit_chat_path(@chat), class: "btn btn-outline-primary mt-3" %>

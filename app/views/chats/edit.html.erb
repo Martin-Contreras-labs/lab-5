@@ -1,0 +1,26 @@
+<h1>Edit Chat</h1>
+
+<% if @chat.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>Errors:</h4>
+    <ul>
+      <% @chat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @chat do |form| %>
+  <div class="mb-3">
+    <%= form.label :sender_id %>
+    <%= form.number_field :sender_id, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :receiver_id %>
+    <%= form.number_field :receiver_id, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Update Chat", class: "btn btn-primary" %>
+<% end %>
