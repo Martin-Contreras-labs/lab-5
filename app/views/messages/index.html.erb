@@ -1,5 +1,10 @@
 <h1>Messages List</h1>
-<table>
+
+<% if can? :create, Message %>
+  <%= link_to "Nuevo mensaje", new_message_path, class: "btn btn-primary mb-3" %>
+<% end %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Chat ID</th>
@@ -7,7 +12,6 @@
       <th>Body</th>
       <th>Actions</th>
     </tr>
-    <%= link_to "Nuevo mensaje", new_message_path, class: "btn btn-primary" %>
   </thead>
   <tbody>
     <% @messages.each do |message| %>
@@ -15,8 +19,16 @@
         <td><%= message.chat_id %></td>
         <td><%= message.user_id %></td>
         <td><%= message.body %></td>
-        <td><%= link_to 'Show', message_path(message) %>
-        <%= link_to "Edit", edit_message_path(message), class: "btn btn-sm btn-warning" %>
+        <td>
+          <%= link_to 'Show', message_path(message), class: "btn btn-sm btn-success me-2" %>
+
+          <% if can? :edit, message %>
+            <%= link_to "Edit", edit_message_path(message), class: "btn btn-sm btn-warning me-2" %>
+          <% end %>
+
+          <% if can? :destroy, message %>
+            <%= link_to "Delete", message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

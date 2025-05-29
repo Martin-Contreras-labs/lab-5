@@ -1,9 +1,17 @@
 <h1>Message Details</h1>
+
 <p><strong>Chat ID:</strong> <%= @message.chat_id %></p>
 <p><strong>User ID:</strong> <%= @message.user_id %></p>
 <p><strong>Body:</strong> <%= @message.body %></p>
-<%= link_to "Edit Message", edit_message_path(@message), class: "btn btn-outline-secondary" %>
-<p><strong>Autor:</strong> <%= @message.user.email rescue "Usuario ##{@message.user_id}" %></p>
-<p><strong>Chat:</strong> <%= link_to "Chat #{@message.chat.id}", chat_path(@message.chat) %></p>
 
-<%= link_to 'Back to Messages', messages_path %>
+<hr>
+
+<%= link_to 'Back to Messages', messages_path, class: "btn btn-outline-secondary me-2" %>
+
+<% if can? :edit, @message %>
+  <%= link_to 'Edit', edit_message_path(@message), class: "btn btn-warning me-2" %>
+<% end %>
+
+<% if can? :destroy, @message %>
+  <%= link_to 'Delete', message_path(@message), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<% end %>
