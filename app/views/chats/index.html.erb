@@ -1,20 +1,22 @@
-<h1 class="mb-4">Chats List</h1>
+<h1 class="mb-4">My Inbox</h1>
 
 <%= link_to "Crear nuevo chat", new_chat_path, class: "btn btn-primary mb-3" %>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Sender ID</th>
-      <th>Receiver ID</th>
+      <th>Conversation With</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @chats.each do |chat| %>
       <tr>
-        <td><%= chat.sender_id %></td>
-        <td><%= chat.receiver_id %></td>
+        <td>
+          <%= chat.other_participant(current_user).email %>
+          <%# Si prefieres mostrar el nombre: %>
+          <%#= chat.other_participant(current_user).first_name %>
+        </td>
         <td>
           <%= link_to 'Show', chat_path(chat), class: "btn btn-sm btn-success" %>
           <%= link_to "Edit", edit_chat_path(chat), class: "btn btn-sm btn-warning" %>
